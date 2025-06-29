@@ -1,3 +1,4 @@
+'use client';
 interface Game {
   id: number;
   name: string;

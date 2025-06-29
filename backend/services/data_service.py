@@ -8,8 +8,8 @@ class DataService:
         query = "SELECT * FROM games"
         return self.get_data(query)
     
-    def get_categories(self):
-        query = "SELECT * FROM categories"
+    def get_filter(self, filter_type):
+        query = f"SELECT * FROM {filter_type}"
         return self.get_data(query)
     
     def get_data(self, query):

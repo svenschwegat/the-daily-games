@@ -44,16 +44,16 @@ async def get_games():
         return result
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
-    
-@app.get("/categories")
-async def get_categories():
+
+@app.get("/filters/{filter_type}")
+async def get_filters(filter_type: str):
     try:
-        result = data_service.get_categories()
+        result = data_service.get_filter(filter_type)
         if result is None:
-            raise HTTPException(status_code=500, detail="Error fetching categories")
+            raise HTTPException(status_code=500, detail=f"Error fetching filters for {filter_type}")
         return result
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
-
+    
 if(__name__ == "__init__"):
     uvicorn.run(app, host="0.0.0.0", port=8000)
