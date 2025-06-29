@@ -19,7 +19,7 @@ interface GameGridProps {
 
 export default function GameGrid({games}: GameGridProps) {
   return (
-    <div className="grid grid-cols-4 gap-4 p-4">
+    <div className="grid lg:grid-cols-4 md:grid-cols-3 gap-4 p-4">
       {games.map((game: Game) => (
         <div 
           key={game.id} 
@@ -29,7 +29,7 @@ export default function GameGrid({games}: GameGridProps) {
           <a 
             href={game.link} 
             target="_blank" 
-            className="text-xl font-bold text-gray-700">
+            className="text-xl font-bold text-gray-700 truncate ">
               {game.name}
             <span className="absolute w-full h-full top-0 left-0 z-1"> </span>
           </a>

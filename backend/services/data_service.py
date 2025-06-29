@@ -8,6 +8,10 @@ class DataService:
         query = "SELECT * FROM games"
         return self.get_data(query)
     
+    def get_categories(self):
+        query = "SELECT * FROM categories"
+        return self.get_data(query)
+    
     def get_data(self, query):
         try:
             self.db.conn.row_factory = sqlite3.Row
