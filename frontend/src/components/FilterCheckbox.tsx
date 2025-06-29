@@ -6,7 +6,7 @@ interface FilterCheckboxProps {
     setCurrentlySelected: (selected: number[]) => void;
 }
 
-export default function FilterCheckbox({id, label, filterColumn, currentlySelected, setCurrentlySelected}: FilterCheckboxProps){
+export default function FilterCheckbox({ id, label, filterColumn, currentlySelected, setCurrentlySelected }: FilterCheckboxProps) {
     const isChecked = currentlySelected.includes(id);
 
     const handleChange = () => {

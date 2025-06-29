@@ -13,6 +13,35 @@ interface FiltersProps {
     filters: Record<string, any>;
 }
 
+interface FilterIterationProps {
+    items: Record<string, any>;
+    title?: string;
+    filterColumn: string;
+    selected: number[];
+    setSelected: (selected: number[]) => void;
+}
+
+function iterateFilterCheckboxes({items, title, filterColumn, selected, setSelected}: FilterIterationProps) {
+    return (
+        <div>
+            <h2 className="text-xl font-bold mt-4 mb-1">{title}</h2>
+            <div className="space-y-1">
+                {items.map((item: Filter) => (
+                    <div key={item.id} className="flex items-center">
+                        <FilterCheckbox
+                            id={item.id}
+                            label={item.name}
+                            filterColumn={filterColumn}
+                            currentlySelected={selected}
+                            setCurrentlySelected={setSelected}
+                        />
+                    </div>
+                ))}
+            </div>
+        </div>
+    );
+}
+
 export default function Filters({filters}: FiltersProps){
     const [selectedCategories, setSelectedCategories] = React.useState<number[]>([0]);
     const [selectedPublishers, setSelectedPublishers] = React.useState<number[]>([0]);
@@ -23,76 +52,41 @@ export default function Filters({filters}: FiltersProps){
     if(filters.length === 0){ return; }
     return(
         <div>
-            <h2 className="text-xl font-bold mb-4">Categories</h2>
-            <div className="space-y-2">
-                {filters.categories.map((category: Filter) => (
-                    <div key={category.id} className="flex items-center">
-                        <FilterCheckbox 
-                            id={category.id} 
-                            label={category.name} 
-                            filterColumn='category_id'
-                            currentlySelected={selectedCategories}
-                            setCurrentlySelected={setSelectedCategories}
-                        />
-                    </div>
-                ))}
-            </div>
-            <h2 className="text-xl font-bold mb-4">Quiz Styles</h2>
-            <div className="space-y-2">
-                {filters.quiz_styles.map((item: Filter) => (
-                    <div key={item.id} className="flex items-center">
-                        <FilterCheckbox 
-                            id={item.id} 
-                            label={item.name} 
-                            filterColumn='quiz_style_id'
-                            currentlySelected={selectedQuizStyles}
-                            setCurrentlySelected={setSelectedQuizStyles}
-                        />
-                    </div>
-                ))}
-            </div>
-            <h2 className="text-xl font-bold mb-4">Answer Types</h2>
-            <div className="space-y-2">
-                {filters.answer_types.map((item: Filter) => (
-                    <div key={item.id} className="flex items-center">
-                        <FilterCheckbox 
-                            id={item.id} 
-                            label={item.name} 
-                            filterColumn='answer_type_id'
-                            currentlySelected={selectedAnswerTypes}
-                            setCurrentlySelected={setSelectedAnswerTypes}
-                        />
-                    </div>
-                ))}
-            </div>
-            <h2 className="text-xl font-bold mb-4">Languages</h2>
-            <div className="space-y-2">
-                {filters.languages.map((item: Filter) => (
-                    <div key={item.id} className="flex items-center">
-                        <FilterCheckbox 
-                            id={item.id} 
-                            label={item.name} 
-                            filterColumn='language_id'
-                            currentlySelected={selectedLanguages}
-                            setCurrentlySelected={setSelectedLanguages}
-                        />
-                    </div>
-                ))}
-            </div>
-            <h2 className="text-xl font-bold mb-4">Publishers</h2>
-            <div className="space-y-2">
-                {filters.publishers.map((item: Filter) => (
-                    <div key={item.id} className="flex items-center">
-                        <FilterCheckbox 
-                            id={item.id} 
-                            label={item.name} 
-                            filterColumn='publisher_id'
-                            currentlySelected={selectedPublishers}
-                            setCurrentlySelected={setSelectedPublishers}
-                        />
-                    </div>
-                ))}
-            </div>
+            {iterateFilterCheckboxes({
+                items: filters.categories, 
+                title: 'Categories', 
+                filterColumn: 'category_id', 
+                selected: selectedCategories, 
+                setSelected: setSelectedCategories
+            })}
+            {iterateFilterCheckboxes({
+                items: filters.quiz_styles, 
+                title: 'Quiz styles', 
+                filterColumn: 'quiz_style_id', 
+                selected: selectedQuizStyles, 
+                setSelected: setSelectedQuizStyles
+            })}
+            {iterateFilterCheckboxes({
+                items: filters.quiz_styles, 
+                title: 'Answer Types', 
+                filterColumn: 'answer_type_id', 
+                selected: selectedAnswerTypes, 
+                setSelected: setSelectedAnswerTypes
+            })}
+            {iterateFilterCheckboxes({
+                items: filters.quiz_styles, 
+                title: 'Languages', 
+                filterColumn: 'language_id', 
+                selected: selectedLanguages, 
+                setSelected: setSelectedLanguages
+            })}
+            {iterateFilterCheckboxes({
+                items: filters.quiz_styles, 
+                title: 'Publishers', 
+                filterColumn: 'publisher_id', 
+                selected: selectedPublishers, 
+                setSelected: setSelectedPublishers
+            })}
         </div>
     )
 }
