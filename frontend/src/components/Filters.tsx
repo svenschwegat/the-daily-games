@@ -1,39 +1,21 @@
 'use client';
 import React from 'react';
 import FilterCheckbox from './FilterCheckbox';
+import type { Filter, FiltersProps, CreateFilterCheckboxProps }  from '../types/FilterTypes';
 
-interface Filter {
-    id: number;
-    name: string;
-    description?: string;
-    link?: string;
-}
-
-interface FiltersProps {
-    filters: Record<string, any>;
-}
-
-interface FilterIterationProps {
-    items: Record<string, any>;
-    title?: string;
-    filterColumn: string;
-    selected: number[];
-    setSelected: (selected: number[]) => void;
-}
-
-function iterateFilterCheckboxes({items, title, filterColumn, selected, setSelected}: FilterIterationProps) {
+function createFilterCheckboxes({ items, selected, dispatch, filterKey, title }: CreateFilterCheckboxProps) {
     return (
         <div>
             <h2 className="text-xl font-bold mt-4 mb-1">{title}</h2>
             <div className="space-y-1">
-                {items.map((item: Filter) => (
+                {items[filterKey].map((item: Filter) => (
                     <div key={item.id} className="flex items-center">
                         <FilterCheckbox
                             id={item.id}
                             label={item.name}
-                            filterColumn={filterColumn}
-                            currentlySelected={selected}
-                            setCurrentlySelected={setSelected}
+                            filterKey={filterKey}
+                            selected={selected[filterKey]} 
+                            dispatch={dispatch}
                         />
                     </div>
                 ))}
@@ -42,50 +24,43 @@ function iterateFilterCheckboxes({items, title, filterColumn, selected, setSelec
     );
 }
 
-export default function Filters({filters}: FiltersProps){
-    const [selectedCategories, setSelectedCategories] = React.useState<number[]>([0]);
-    const [selectedPublishers, setSelectedPublishers] = React.useState<number[]>([0]);
-    const [selectedQuizStyles, setSelectedQuizStyles] = React.useState<number[]>([0]);
-    const [selectedAnswerTypes, setSelectedAnswerTypes] = React.useState<number[]>([0]);
-    const [selectedLanguages, setSelectedLanguages] = React.useState<number[]>([0]);
-
-    if(filters.length === 0){ return; }
+export default function Filters({ filterContent, filters, dispatch }: FiltersProps){
     return(
         <div>
-            {iterateFilterCheckboxes({
-                items: filters.categories, 
-                title: 'Categories', 
-                filterColumn: 'category_id', 
-                selected: selectedCategories, 
-                setSelected: setSelectedCategories
+            {createFilterCheckboxes({
+                items: filterContent,
+                selected: filters, 
+                dispatch: dispatch,
+                filterKey: 'categories',
+                title: 'Categories',
             })}
-            {iterateFilterCheckboxes({
-                items: filters.quiz_styles, 
-                title: 'Quiz styles', 
-                filterColumn: 'quiz_style_id', 
-                selected: selectedQuizStyles, 
-                setSelected: setSelectedQuizStyles
+            {createFilterCheckboxes({
+                items: filterContent,
+                selected: filters, 
+                dispatch: dispatch,
+                filterKey: 'quiz_styles',
+                title: 'Quiz Styles',
             })}
-            {iterateFilterCheckboxes({
-                items: filters.quiz_styles, 
-                title: 'Answer Types', 
-                filterColumn: 'answer_type_id', 
-                selected: selectedAnswerTypes, 
-                setSelected: setSelectedAnswerTypes
+            {createFilterCheckboxes({
+                items: filterContent,
+                selected: filters, 
+                dispatch: dispatch,
+                filterKey: 'answer_types',
+                title: 'Answer Types',
             })}
-            {iterateFilterCheckboxes({
-                items: filters.quiz_styles, 
-                title: 'Languages', 
-                filterColumn: 'language_id', 
-                selected: selectedLanguages, 
-                setSelected: setSelectedLanguages
+            {createFilterCheckboxes({
+                items: filterContent,
+                selected: filters, 
+                dispatch: dispatch,
+                filterKey: 'languages',
+                title: 'Languages',
             })}
-            {iterateFilterCheckboxes({
-                items: filters.quiz_styles, 
-                title: 'Publishers', 
-                filterColumn: 'publisher_id', 
-                selected: selectedPublishers, 
-                setSelected: setSelectedPublishers
+            {createFilterCheckboxes({
+                items: filterContent,
+                selected: filters, 
+                dispatch: dispatch,
+                filterKey: 'publishers',
+                title: 'Publishers',
             })}
         </div>
     )
