@@ -22,8 +22,6 @@ export default async function Home() {
     return acc;
   }, {} as Record<string, any>);
 
-  console.log('filters', filterContent);
-
   if(!games || games.length === 0) {
     return <div className="flex justify-center items-center h-screen">No games available</div>;
   }

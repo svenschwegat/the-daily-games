@@ -1,3 +1,5 @@
+import { FilterKey } from './FilterTypes';
+
 export type Game = {
     id: number;
     name: string;
@@ -14,5 +16,6 @@ export type Game = {
 }
 
 export type GameGridProps = {
-  games: Game[];
+  initialGames: Game[];
+  filters: Record<FilterKey, number[]>;
 }

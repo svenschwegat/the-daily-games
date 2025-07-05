@@ -1,7 +1,32 @@
-'use client';
 import type { Game, GameGridProps } from '../types/GameTypes';
+import type { FilterKey } from '../types/FilterTypes';
 
-export default function GameGrid({games}: GameGridProps) {
+export default function GameGrid({initialGames, filters}: GameGridProps) {
+  const filterMap = new Map<FilterKey, keyof Game>([
+    ['categories', 'category_id'], 
+    ['publishers', 'publisher_id'], 
+    ['quiz_styles', 'quiz_style_id'], 
+    ['answer_types', 'answer_type_id'], 
+    ['languages', 'language_id']
+  ]);
+
+  const games = initialGames.filter((game: Game) => {
+    for(const [filterKey, gameColumn] of filterMap.entries()) {
+      const filterList = filters[filterKey];
+      const gameColumnValue = game[gameColumn];
+      
+      if(typeof gameColumnValue !== 'number'){
+        throw new Error(`Expected gameColumnValue to be a number, got ${typeof gameColumnValue} for game: ${game.name}`);
+      }
+
+      if(filterList && !filterList.includes(0) && !filterList.includes(gameColumnValue)) {
+        return false;
+      }
+    }
+
+    return true;
+  });
+
   return (
     <div className="grid lg:grid-cols-4 md:grid-cols-3 gap-4 p-4">
       {games.map((game: Game) => (

@@ -18,7 +18,7 @@ export type FilterState = {
 
 export type FilterAction =
     | { type: 'SET_FILTER'; key: FilterKey; values: number[] }
-    | { type: 'RESET_FILTERS'; key: FilterKey }
+    | { type: 'RESET_FILTER'; key: FilterKey }
     | { type: 'TOGGLE_FILTER_VALUE'; key: FilterKey; value: number };
 
 // Props for the Filters component

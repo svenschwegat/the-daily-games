@@ -21,16 +21,23 @@ export default function HomeFramework({ filterContent, games }: HomeFrameworkPro
             case 'TOGGLE_FILTER_VALUE':
                 const current = state[action.key];
                 const exists = current.includes(action.value);
+                
+                let updated = exists 
+                    ? current.filter((v) => v !== action.value) 
+                    : [...current, action.value];
+
+                if(updated.length === 0) {
+                    updated = [0];
+                }
+
                 return {
                     ...state,
-                    [action.key]: exists
-                        ? current.filter((v) => v !== action.value)
-                        : [...current, action.value],
+                    [action.key]: updated,
                 };
-            case 'RESET_FILTERS':
+            case 'RESET_FILTER':
                 return {
                     ...state,
-                    [action.key]: [0], // Reset just the specified key to default
+                    [action.key]: [0],
                 };
             default:
                 return state;
@@ -58,7 +65,7 @@ export default function HomeFramework({ filterContent, games }: HomeFrameworkPro
                     />
                 </div>
                 <div className="w-3/4 p-4">
-                    <GameGrid games={games} />
+                    <GameGrid initialGames={games} filters={filters} />
                 </div>
             </main>
         </div>
