@@ -29,7 +29,7 @@ export default function GameGrid({ initialGames, filters }: GameGridProps) {
 
   if (!games || games.length === 0) {
     return (
-      <div className="flex justify-center">
+      <div id="no-games" className="flex flex-col p-4">
         <p>No games with the chosen filters available.</p>
         <button
           className="ml-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
@@ -41,17 +41,17 @@ export default function GameGrid({ initialGames, filters }: GameGridProps) {
   }
 
   return (
-    <div className="grid lg:grid-cols-4 md:grid-cols-3 gap-4 p-4">
+    <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-4 p-4 pl-20 pr-20">
       {games.map((game: Game) => (
         <div
           key={game.id}
-          className="p-4 bg-slate-300 rounded-lg m-2 relative h-27
+          className="p-4 bg-slate-300 rounded-lg m-2 relative h-30
             hover:bg-slate-400 hover:-translate-y-1 hover:scale-105
             transition duration-500 ease-in-out">
           <a
             href={game.link}
             target="_blank"
-            className="text-xl font-bold text-gray-700 truncate ">
+            className="text-xl font-bold text-gray-700 truncate">
             {game.name}
             <span className="absolute w-full h-full top-0 left-0 z-1"> </span>
           </a>

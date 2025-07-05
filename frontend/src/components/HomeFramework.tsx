@@ -63,15 +63,16 @@ export default function HomeFramework({ filterContent, games }: HomeFrameworkPro
     const [filters, dispatch] = React.useReducer(filterReducer, initialFilters);
 
     return (
-        <div className='flex min-h-screen bg-gray-50'>
-            <div className="min-w-2xs p-4 bg-white shadow">
+        <div className='flex bg-gray-50'>
+            <div id="filter-wrapper" className="p-4 shadow min-w-2xs max-w-2xs h-full left-0 right-0 fixed overflow-y-auto pb-20"> 
+                {/* h-full overflow-y-auto min-w-2xs p-4 bg-white shadow*/}
                 <Filters
                     filterContent={filterContent}
                     filters={filters}
                     dispatch={dispatch}
                 />
             </div>
-            <div className="min-w-3/4 p-4">
+            <div id="game-grid-wrapper" className="h-full overflow-y-auto left-70 min-w-3/4 max-w-9/10 overflow-y-scroll fixed pb-20">
                 <GameGrid
                     initialGames={games}
                     filters={filters}

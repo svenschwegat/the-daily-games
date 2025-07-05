@@ -22,15 +22,9 @@ export default async function Home() {
     return acc;
   }, {} as Record<string, any>);
 
-  if(!games || games.length === 0) {
-    return <div className="flex justify-center items-center h-screen">No games available</div>;
-  }
-
   return (
-    <div className='min-h-screen bg-gray-50'>
-      <main className="flex">
+      <div>
         <HomeFramework filterContent={filterContent} games={games} />
-      </main>
-    </div>
+      </div>
   );
 }
