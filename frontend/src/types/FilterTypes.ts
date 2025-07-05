@@ -1,6 +1,6 @@
 export type FilterKey = 'categories' | 'quiz_styles' | 'answer_types' | 'languages' | 'publishers';
 
-export interface Filter {
+export type Filter = {
     id: number;
     name: string;
     description?: string;
@@ -22,13 +22,13 @@ export type FilterAction =
     | { type: 'TOGGLE_FILTER_VALUE'; key: FilterKey; value: number };
 
 // Props for the Filters component
-export interface FiltersProps {
+export type FiltersProps = {
     filters: Record<FilterKey, number[]>;
     filterContent: Record<FilterKey, Filter[]>;
     dispatch: (action: FilterAction) => void;
 }
 
-export interface CreateFilterCheckboxProps {
+export type CreateFilterCheckboxProps = {
     items: Record<FilterKey, Filter[]>;
     selected: Record<FilterKey, number[]>;
     dispatch: (action: FilterAction) => void;
@@ -37,7 +37,7 @@ export interface CreateFilterCheckboxProps {
 }
 
 // Props for the FilterCheckbox component
-export interface FilterCheckboxProps {
+export type FilterCheckboxProps = {
     id: number;
     label: string;
     filterKey: FilterKey;

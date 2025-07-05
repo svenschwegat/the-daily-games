@@ -1,4 +1,4 @@
-export interface Game {
+export type Game = {
     id: number;
     name: string;
     description: string;
@@ -13,6 +13,6 @@ export interface Game {
     ranking: number | null;
 }
 
-export interface GameGridProps {
+export type GameGridProps = {
   games: Game[];
 }
