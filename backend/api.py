@@ -1,4 +1,5 @@
 import uvicorn
+import os
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -23,8 +24,12 @@ async def lifespan(app: FastAPI):
 
 app = FastAPI(lifespan=lifespan)
 
+frontend_url = os.environ.get("FRONTEND_URL")
+if not frontend_url:
+    raise ValueError("FRONTEND_URL is not set in the environment variables")
+
 origins = [
-    "http://localhost:3000"
+    frontend_url
 ]
 
 app.add_middleware(

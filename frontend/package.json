@@ -9,8 +9,6 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@heroui/link": "^2.2.19",
-    "@heroui/navbar": "^2.2.20",
     "next": "15.3.3",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
