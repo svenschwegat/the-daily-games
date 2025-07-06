@@ -24,7 +24,8 @@ project_folder/
  │  ├─ .env
 
 ## Running the app
-Run the ```docker-compose -up build``` command in the root to get the app running
+Run the ```docker-compose -up build``` command in the root directory to get the app running.
+
 The database has several tables to be present, including games, categories, publishers etc.
 
 You can also run the project without Docker:
