@@ -1,4 +1,5 @@
 import HomeFramework from "@/components/HomeFramework";
+import type { Filter } from "@/types/FilterTypes";
 
 async function getGames(){
   const data = await fetch(`${process.env.BACKEND_URL}/games`, { cache: 'no-store' });
@@ -20,7 +21,7 @@ export default async function Home() {
   const filterContent = filterTypes.reduce((acc, type, idx) => {
     acc[type] = filterResults[idx];
     return acc;
-  }, {} as Record<string, any>);
+  }, {} as Record<string, Filter[]>);
 
   return (
       <div>

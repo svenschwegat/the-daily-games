@@ -3,10 +3,10 @@ import React from "react";
 import GameGrid from "./GameGrid";
 import Filters from "./Filters";
 import type { Game } from "../types/GameTypes";
-import type { FilterState, FilterAction } from "../types/FilterTypes";
+import type { Filter, FilterState, FilterAction } from "../types/FilterTypes";
 
 interface HomeFrameworkProps {
-    filterContent: Record<string, any>;
+    filterContent: Record<string, Filter[]>;
     games: Game[];
 }
 

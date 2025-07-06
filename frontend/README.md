@@ -9,10 +9,10 @@ Structure should look like this:
 project_folder/
 ├─ backend/
 │  ├─ .env
+├─ database/
+│  ├─ daily_games.db
 ├─ frontend/
 │  ├─ .env
 
-The first time make sure to do pip install requirements.txt in the backend folder and npm install in the frontend folder
-
-In the frontend folder run: npm run dev
-In the backend folder run: fastapi run api.py
+Run the docker-compose -up build command in the root to get the app running
+The database has several tables to be present, including games, categories, publishers etc.
