@@ -38,10 +38,8 @@ and
 ```
 cd backend
 pip install -r requirements.txt
-pip install fastapi[standard]
-fastapi run api.py
+uvicorn api:app --reload
 ```
-For the fastapi command to work ```fastapi[standard]``` is needed in addition to the requirements.txt
 
 ## Author
 - [@svenschwegat](https://www.github.com/svenschwegat)
