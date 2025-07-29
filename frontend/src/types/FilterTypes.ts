@@ -3,6 +3,7 @@ export type FilterKey = 'categories' | 'quiz_styles' | 'answer_types' | 'languag
 export type Filter = {
     id: number;
     name: string;
+    count?: number;
     description?: string;
     link?: string;
 }

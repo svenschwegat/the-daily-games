@@ -8,8 +8,23 @@ class DataService:
         query = "SELECT * FROM games"
         return self.get_data(query)
     
-    def get_filter(self, filter_type):
-        query = f"SELECT * FROM {filter_type}"
+    def get_filter(self, filter_table):
+        if(filter_table == 'categories'):
+            game_column = 'category_id'
+        else:
+            game_column = f"{filter_table[:-1]}_id"
+
+        query = f"\
+        SELECT fil.*, \
+        CASE WHEN fil.id <> 0 \
+            THEN COUNT(g.{game_column}) \
+            ELSE NULL \
+        END AS 'count' \
+        FROM {filter_table} fil \
+        LEFT JOIN games g \
+        ON fil.id = g.{game_column} \
+        GROUP BY g.{game_column}"
+        
         return self.get_data(query)
     
     def get_data(self, query):
