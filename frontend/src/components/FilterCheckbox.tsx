@@ -1,4 +1,5 @@
 import type { FilterCheckboxProps } from '../types/FilterTypes';
+import { Checkbox } from '@heroui/react';
 
 export default function FilterCheckbox({ id, label, filterKey, selected, dispatch }: FilterCheckboxProps) {
     const isChecked = selected.includes(id);
@@ -15,18 +16,15 @@ export default function FilterCheckbox({ id, label, filterKey, selected, dispatc
             }
         }
     };
-    return (
-        <div className="flex items-center">
-            <input
-                id={`checkbox-${filterKey}-${id}`}
-                type="checkbox" 
-                className="w-4 h-4 bg-gray-100 mr-2"
-                checked={isChecked}
-                onChange={handleChange}
-            />
-            <label htmlFor={`checkbox-${filterKey}-${id}`} className="text-gray-700">
-                {label}
-            </label>
-        </div>
+
+    return(
+        <Checkbox
+            id={`checkbox-${filterKey}-${id}`}
+            color="secondary"
+            isSelected={isChecked}
+            onChange={handleChange}
+        >
+            {label}
+        </Checkbox>
     );
 }

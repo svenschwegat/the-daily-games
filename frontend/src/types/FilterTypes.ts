@@ -46,3 +46,13 @@ export type FilterCheckboxProps = {
     selected: number[];
     dispatch: (action: FilterAction) => void;
 }
+
+export type FilterNamingScheme = {
+    key: FilterKey;
+    label: string;
+    id_column: string;
+}
+
+export type FilterNamingSchemeKeys = {
+    [key in FilterKey]: FilterNamingScheme;
+}
