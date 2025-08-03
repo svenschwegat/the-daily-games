@@ -1,3 +1,4 @@
+import type { Game } from './GameTypes';
 export type FilterKey = 'categories' | 'quiz_styles' | 'answer_types' | 'languages' | 'publishers';
 
 export type Filter = {
@@ -50,7 +51,7 @@ export type FilterCheckboxProps = {
 export type FilterNamingScheme = {
     key: FilterKey;
     label: string;
-    id_column: string;
+    id_column: keyof Game;
 }
 
 export type FilterNamingSchemeKeys = {

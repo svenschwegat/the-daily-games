@@ -1,20 +1,14 @@
 import GameGridImage from './GameGridImage';
 import type { Game, GameGridProps } from '../types/GameTypes';
 import type { FilterKey } from '../types/FilterTypes';
+import { filterNamingScheme } from '@/utils/FilterNamingScheme';
 
 export default function GameGrid({ initialGames, filters }: GameGridProps) {
-  const filterMap = new Map<FilterKey, keyof Game>([
-    ['categories', 'category_id'],
-    ['publishers', 'publisher_id'],
-    ['quiz_styles', 'quiz_style_id'],
-    ['answer_types', 'answer_type_id'],
-    ['languages', 'language_id']
-  ]);
-
   const games = initialGames.filter((game: Game) => {
-    for (const [filterKey, gameColumn] of filterMap.entries()) {
-      const filterList = filters[filterKey];
-      const gameColumnValue = game[gameColumn];
+    for (const key in filterNamingScheme) {
+      const filter = filterNamingScheme[key as FilterKey];
+      const gameColumnValue = game[filter.id_column];
+      const filterList = filters[filter.key];
 
       if (typeof gameColumnValue !== 'number') {
         throw new Error(`Expected gameColumnValue to be a number, got ${typeof gameColumnValue} for game: ${game.name}`);
@@ -23,8 +17,7 @@ export default function GameGrid({ initialGames, filters }: GameGridProps) {
       if (filterList && !filterList.includes(0) && !filterList.includes(gameColumnValue)) {
         return false;
       }
-    }
-
+    };
     return true;
   });
 

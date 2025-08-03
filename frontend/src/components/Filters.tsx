@@ -5,7 +5,7 @@ import { Accordion, AccordionItem } from '@heroui/react';
 import type { FilterKey, Filter, FiltersProps, CreateFilterCheckboxProps } from '../types/FilterTypes';
 import { filterNamingScheme } from '../utils/FilterNamingScheme';
 
-function createFilterCheckboxes({ items, selected, dispatch, filterKey, title }: CreateFilterCheckboxProps) {
+function createFilterCheckboxes({ items, selected, dispatch, filterKey }: CreateFilterCheckboxProps) {
   return (
     <div>
       {items[filterKey].map((item: Filter) => (
@@ -25,7 +25,7 @@ function createFilterCheckboxes({ items, selected, dispatch, filterKey, title }:
 
 export default function Filters({ filterContent, filters, dispatch }: FiltersProps) {
   return (
-    <Accordion>
+    <Accordion selectionMode="multiple" defaultExpandedKeys={[filterNamingScheme.categories.key]}>
       {(Object.keys(filterNamingScheme) as Array<FilterKey>).map((key) => {
         const filter = filterNamingScheme[key];
         return (
