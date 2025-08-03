@@ -19,3 +19,7 @@ export type GameGridProps = {
   initialGames: Game[];
   filters: Record<FilterKey, number[]>;
 }
+
+export type GameGridImageProps = {
+  game: Game;
+}

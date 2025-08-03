@@ -1,3 +1,4 @@
+import GameGridImage from './GameGridImage';
 import type { Game, GameGridProps } from '../types/GameTypes';
 import type { FilterKey } from '../types/FilterTypes';
 
@@ -44,10 +45,13 @@ export default function GameGrid({ initialGames, filters }: GameGridProps) {
     <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-4 p-4 pl-20 pr-20">
       {games.map((game: Game) => (
         <div
+          id={game.id + game.name}
           key={game.id}
-          className="p-4 bg-slate-300 rounded-lg m-2 relative h-30
+          className="p-4 bg-white border-1 border-slate-300 rounded-lg m-2 relative h-110
             hover:bg-slate-400 hover:-translate-y-1 hover:scale-105
-            transition duration-500 ease-in-out">
+            transition duration-500 ease-in-out"
+        >
+          <GameGridImage game={game} />
           <a
             href={game.link}
             target="_blank"
