@@ -5,6 +5,7 @@ import FilterChips from './FilterChips';
 import { Accordion, AccordionItem } from '@heroui/react';
 import type { FilterKey, Filter, FiltersProps, CreateFilterCheckboxProps } from '../types/FilterTypes';
 import { filterNamingScheme } from '../utils/FilterNamingScheme';
+import { FilterIcon } from '@/icons/FilterIcons';
 
 function createFilterCheckboxes({ items, selected, dispatch, filterKey }: CreateFilterCheckboxProps) {
   return (
@@ -32,7 +33,12 @@ export default function Filters({ filterContent, filters, dispatch }: FiltersPro
         {(Object.keys(filterNamingScheme) as Array<FilterKey>).map((key) => {
           const filter = filterNamingScheme[key];
           return (
-            <AccordionItem key={filter.key} aria-label={filter.label} title={filter.label}>
+            <AccordionItem
+              startContent={<FilterIcon type={key} width={24} height={24} color="#000000"/>}
+              key={filter.key}
+              aria-label={filter.label}
+              title={filter.label}
+            >
               {createFilterCheckboxes({
                 items: filterContent,
                 selected: filters,

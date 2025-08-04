@@ -1,10 +1,12 @@
 import { FilterKey, FilterChipsProps } from "@/types/FilterTypes";
 import { Chip } from "@heroui/react";
+import { FilterIcon } from "@/icons/FilterIcons";
 
 export default function FilterChips({ filterContent, selectedFilterIds, dispatch }: FilterChipsProps) {
   const onClose = (key: FilterKey, id: number) => {
     dispatch({ type: 'TOGGLE_FILTER_VALUE', key: key as FilterKey, value: id });
   }
+  
   return (
     <div id="FilterChips" className="flex flex-wrap gap-2">
       {Object.entries(selectedFilterIds).map(([key, ids]) => (
@@ -15,7 +17,7 @@ export default function FilterChips({ filterContent, selectedFilterIds, dispatch
               <Chip 
                 size="sm" 
                 color="secondary"
-                startContent={<img src={`/symbol_${key}.svg`} height={20} width={20} />}
+                startContent={<FilterIcon type={key as FilterKey} width={20} height={20} color="#ffffff" />}
                 onClose={() => onClose(key as FilterKey, id)}
               >
                 {filterItem.name}
