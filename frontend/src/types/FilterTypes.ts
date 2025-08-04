@@ -48,6 +48,12 @@ export type FilterCheckboxProps = {
     dispatch: (action: FilterAction) => void;
 }
 
+export type FilterChipsProps = {
+    selectedFilterIds: Record<FilterKey, number[]>;
+    filterContent: Record<FilterKey, Filter[]>;
+    dispatch: (action: FilterAction) => void;
+}
+
 export type FilterNamingScheme = {
     key: FilterKey;
     label: string;
