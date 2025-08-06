@@ -8,6 +8,10 @@ const nextConfig: NextConfig = {
           source: "/backend/:path*",
           destination: `${process.env.BACKEND_URL}/:path*`,
         },
+        {
+          source: "/supabase/:path*",
+          destination: `${process.env.SUPABASE_URL}/:path*`,
+        }
       ];
     },
 };

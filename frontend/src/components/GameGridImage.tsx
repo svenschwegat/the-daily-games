@@ -2,20 +2,26 @@ import React from 'react';
 import type { GameGridImageProps } from '@/types/GameTypes';
 
 export default function GameGridImage({ game }: GameGridImageProps) {
-  const [src, setSrc] = React.useState(`/Preview_${game.id}.png`);
-
-  const handleError = React.useCallback(() => {
-    if (src !== '/Preview_Empty.png') {
-      setSrc('/Preview_Empty.png');
-    }
-  }, [src]);
+  const imageBaseUrl = `/supabase/storage/v1/object/public/pictures/Preview_`;
+  const [src, setSrc] = React.useState(`${imageBaseUrl}Empty.png`);
+  
+  React.useEffect(() => {
+    
+    fetch(src, { method: 'HEAD' }).then((res) => {
+      if (res.status === 200 || res.status === 204) {
+        setSrc(`${imageBaseUrl}${game.id}.png`);
+      } else {
+        setSrc(`${imageBaseUrl}Empty.png`);
+      }
+    })
+  }, []);
 
   return (
     <img
       src={src}
       alt={`Preview picture of ${game.name}`}
       className="max-w-60 max-h-75 mx-auto mb-4"
-      onError={handleError}
+      onError={() => setSrc(`${imageBaseUrl}Empty.png`)}
     />
   );
 }

@@ -11,7 +11,7 @@ function createFilterCheckboxes({ items, selected, dispatch, filterKey }: Create
   return (
     <div>
       {items[filterKey].map((item: Filter) => (
-        <div key={item.id} className="flex items-center">
+        <div key={item.id} className="flex items-center p-1">
           <FilterCheckbox
             id={item.id}
             label={item.name + (item.count ? ` (${item.count})` : '')}
