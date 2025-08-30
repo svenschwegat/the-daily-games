@@ -1,41 +1,34 @@
-import sqlite3
+from supabase import create_client, Client
 
 class DataService:
     def __init__(self, db):
         self.db = db
 
     def get_games(self):
-        query = "SELECT * FROM games"
-        return self.get_data(query)
+        response = self.select_from_table("games", "*")
+        return response
     
     def get_filter(self, filter_table):
-        if(filter_table == 'categories'):
-            game_column = 'category_id'
-        else:
-            game_column = f"{filter_table[:-1]}_id"
-
-        query = f"\
-        SELECT fil.*, \
-        CASE WHEN fil.id <> 0 \
-            THEN COUNT(g.{game_column}) \
-            ELSE NULL \
-        END AS 'count' \
-        FROM {filter_table} fil \
-        LEFT JOIN games g \
-        ON fil.id = g.{game_column} \
-        GROUP BY g.{game_column}"
+        data = self.select_from_table(filter_table, "*, games(count)")
         
-        return self.get_data(query)
-    
-    def get_data(self, query):
-        try:
-            self.db.conn.row_factory = sqlite3.Row
-            cursor = self.db.conn.cursor()
-            cursor.execute(query)
-            rows = cursor.fetchall()
+        for row in data:
+            if row["id"] == 0:
+                row["count"] = None
+            else:
+                row["count"] = row["games"][0]["count"] if row["games"] else 0
+            del row["games"]
+        return data
+        
+    def select_from_table(self, table_name: str, select_statement: str):
+        response = (
+            self.db.client
+            .table(table_name)
+            .select(select_statement)
+            .execute()
+        )
 
-            result = [dict(row) for row in rows]
-            return result
-        except Exception as e:
-            print(f"Error fetching data: {e}")
-            return None
+        response.data
+        if response is None:
+            raise Exception(f"Error fetching data from {table_name}: {response.error.message}")
+        
+        return response.data

@@ -6,20 +6,19 @@ from fastapi.middleware.cors import CORSMiddleware
 from contextlib import asynccontextmanager
 from dotenv import load_dotenv
 
-from services.sqlite_service import SqliteService
+from services.supabase_service import SupabaseService
 from services.data_service import DataService
 
 load_dotenv(dotenv_path="./.env")
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    global sqlite_service
-    sqlite_service = SqliteService.from_env_vars()
+    global db_service
+    db_service = SupabaseService.from_env_vars()
     global data_service
-    data_service = DataService(sqlite_service)
+    data_service = DataService(db_service)
     
     yield
-    sqlite_service.close_connection()
     print('Shutting down')
 
 app = FastAPI(lifespan=lifespan)
