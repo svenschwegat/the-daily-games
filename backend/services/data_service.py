@@ -1,5 +1,3 @@
-from supabase import create_client, Client
-
 class DataService:
     def __init__(self, db):
         self.db = db
