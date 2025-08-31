@@ -5,10 +5,8 @@ import { Card, CardHeader, CardBody, CardFooter, Divider, Link } from '@heroui/r
 export default function GameGridCard({ game }: { game: Game }) {
   return (
     <Card isPressable>
-      <CardHeader>
-        <GameGridImage game={game} />
-      </CardHeader>
       <CardBody>
+        <GameGridImage game={game} />
         <div className="text-xl font-bold text-gray-700 truncate text-center">
           {game.name}
         </div>
