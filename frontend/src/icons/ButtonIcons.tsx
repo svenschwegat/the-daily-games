@@ -2,9 +2,12 @@ import type { ButtonIconProps, SvgIconProps } from '../types/IconTypes';
 
 export const ButtonIcon = ({ type, width = 50, height = 50, color = "#ffffff" }: ButtonIconProps): React.ReactNode => {
     // https://www.svgrepo.com/collection/dazzle-line-icons/
-    return (
-        icon_filter({ width, height, color })
-    )
+        switch (type) {
+            case 'filter':
+                return icon_filter({ width, height, color })
+            default:
+                return null;
+        }
 }
 
 const icon_filter = ({ width = 50, height = 50, color = "#ffffff" }: SvgIconProps): React.ReactNode => {
