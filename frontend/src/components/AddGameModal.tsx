@@ -1,11 +1,9 @@
 import React from 'react';
 import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure } from "@heroui/react";
 import AddGameModalContent from "@/components/AddGameModalContent";
-import type { Game } from "@/types/GameTypes";
 
 export default function AddGameModal() {
     const { isOpen, onOpen, onClose } = useDisclosure();
-    const [newGame, setNewGame] = React.useState({} as Game);
     const handleOpen = () => { onOpen(); };
 
     return (
