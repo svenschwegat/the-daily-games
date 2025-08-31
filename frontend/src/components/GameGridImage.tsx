@@ -4,9 +4,8 @@ import Image from 'next/image';
 
 export default function GameGridImage({ game }: GameGridImageProps) {
   const imageBaseUrl = `/supabase/storage/v1/object/public/pictures/Preview_`;
-  // const imageBaseUrl = '/Preview_';
   const [src, setSrc] = React.useState(`${imageBaseUrl}Empty.png`);
-  
+
   React.useEffect(() => {
     fetch(src, { method: 'HEAD' }).then((res) => {
       if (res.status === 200 || res.status === 204) {
@@ -18,8 +17,8 @@ export default function GameGridImage({ game }: GameGridImageProps) {
   }, []);
 
   return (
-    <div 
-      id={`ImageContainer${game.id}`} 
+    <div
+      id={`ImageContainer${game.id}`}
       className="w-full h-65 flex justify-center items-center mt-2 mb-4"
     >
       <Image
