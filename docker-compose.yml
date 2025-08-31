@@ -4,16 +4,16 @@ services:
       context: ./backend
       dockerfile: Dockerfile
     ports:
-      - "8000:8000"
+      - "8020:8020"
     env_file:
-      - backend/.env
+      - backend/docker.env
 
   frontend:
     build:
       context: ./frontend
       dockerfile: Dockerfile
     ports:
-      - "3000:3000"
+      - "3020:3020"
     depends_on:
       - backend
     env_file:

@@ -14,6 +14,8 @@ project_folder/
  ├─ backend/
  
  │  ├─ .env
+
+ │  ├─ docker.env
  
  ├─ frontend/
  
@@ -21,7 +23,7 @@ project_folder/
  
  │  ├─ docker.env
 
-There is an extra docker env file for the frontend, so that you can run the docker image and the dev environment without changing the BACKEND_URL.
+There is an extra docker env file for the frontend and backend, so that you can run the docker image and the dev environment at the same time and without change URL params.
 
 ## Running the app
 Run the ```docker compose up``` command in the root directory to get the app running.
