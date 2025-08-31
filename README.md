@@ -18,10 +18,13 @@ project_folder/
  ├─ frontend/
  
  │  ├─ .env
+ 
+ │  ├─ docker.env
 
+There is an extra docker env file for the frontend, so that you can run the docker image and the dev environment without changing the BACKEND_URL.
 
 ## Running the app
-Run the ```docker-compose -up build``` command in the root directory to get the app running.
+Run the ```docker compose up``` command in the root directory to get the app running.
 
 The database needs several tables to be present, including games, categories, publishers etc.
 
