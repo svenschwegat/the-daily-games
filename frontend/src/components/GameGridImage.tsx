@@ -4,6 +4,7 @@ import Image from 'next/image';
 
 export default function GameGridImage({ game }: GameGridImageProps) {
   const imageBaseUrl = `/supabase/storage/v1/object/public/pictures/Preview_`;
+  // const imageBaseUrl = '/Preview_'; // For debugging locally without supabase
   const [src, setSrc] = React.useState(`${imageBaseUrl}Empty.png`);
 
   React.useEffect(() => {

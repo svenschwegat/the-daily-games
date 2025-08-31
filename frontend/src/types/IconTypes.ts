@@ -9,3 +9,7 @@ export type SvgIconProps = {
 export interface FilterIconProps extends SvgIconProps {
     type: FilterKey;
 }
+
+export interface ButtonIconProps extends SvgIconProps {
+    type: 'filter' | 'sort';
+}
