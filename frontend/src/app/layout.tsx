@@ -26,7 +26,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}> 
         <Providers>
           <CustomNavbar />
-          <main className="flex flex-1 overflow-hidden">
+          <main>
             {children}
           </main>
         </Providers>

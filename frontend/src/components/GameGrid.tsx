@@ -35,7 +35,11 @@ export default function GameGrid({ initialGames, filters }: GameGridProps) {
   }
 
   return (
-    <div className="grid xl:grid-cols-3 lg:grid-cols-2 gap-4 p-4 pl-20 pr-20">
+    <div className="
+      grid gap-4 p-4
+      xl:grid-cols-3 
+      lg:grid-cols-2 lg:pl-20 lg:pr-20"
+    >
       {games.map((game: Game) => (
         <GameGridCard game={game} key={game.id}/>
       ))}

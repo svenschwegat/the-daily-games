@@ -3,7 +3,8 @@ import type { GameGridImageProps } from '@/types/GameTypes';
 import Image from 'next/image';
 
 export default function GameGridImage({ game }: GameGridImageProps) {
-  const imageBaseUrl = `/supabase/storage/v1/object/public/pictures/Preview_`;
+  // const imageBaseUrl = `/supabase/storage/v1/object/public/pictures/Preview_`;
+  const imageBaseUrl = '/Preview_';
   const [src, setSrc] = React.useState(`${imageBaseUrl}Empty.png`);
 
   React.useEffect(() => {
