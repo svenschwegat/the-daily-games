@@ -7,14 +7,8 @@ export default function GameGridImage({ game }: GameGridImageProps) {
   const [src, setSrc] = React.useState(`${imageBaseUrl}Empty.png`);
 
   React.useEffect(() => {
-    fetch(src, { method: 'HEAD' }).then((res) => {
-      if (res.status === 200 || res.status === 204) {
-        setSrc(`${imageBaseUrl}${game.id}.png`);
-      } else {
-        setSrc(`${imageBaseUrl}Empty.png`);
-      }
-    })
-  }, []);
+    setSrc(`${imageBaseUrl}${game.id}.png`);
+  }, [game.id, imageBaseUrl]);
 
   return (
     <div

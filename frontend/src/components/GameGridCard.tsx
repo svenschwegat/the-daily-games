@@ -1,6 +1,6 @@
 import type { Game } from '../types/GameTypes';
 import GameGridImage from './GameGridImage';
-import { Card, CardHeader, CardBody, CardFooter, Divider, Link } from '@heroui/react'
+import { Card, CardBody, CardFooter, Divider, Link } from '@heroui/react'
 
 export default function GameGridCard({ game }: { game: Game }) {
   return (
