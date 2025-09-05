@@ -24,8 +24,6 @@ export default async function Home() {
   }, {} as Record<string, Filter[]>);
 
   return (
-      <div>
-        <HomeFramework filterContent={filterContent} games={games} />
-      </div>
+    <HomeFramework filterContent={filterContent} games={games} />
   );
 }
