@@ -4,7 +4,7 @@ import { ButtonIcon } from "@/icons/ButtonIcons";
 import { sortNamingScheme } from "@/utils/SortNamingScheme";
 import type { SortKey, SortDropdownProps } from "@/types/SortTypes";
 
-export default function SortDropdown({ sortOrder, setsortOrder }: SortDropdownProps) {
+export default function SortDropdown({ sortOrder, setSortOrder }: SortDropdownProps) {
   return (
     <Dropdown>
       <DropdownTrigger>
@@ -21,7 +21,7 @@ export default function SortDropdown({ sortOrder, setsortOrder }: SortDropdownPr
         selectionMode="single"
         selectedKeys={sortOrder}
         onSelectionChange={(keys) => {
-          setsortOrder(keys as Set<SortKey>);
+          setSortOrder(keys as Set<SortKey>);
         }}
       >
         {(Object.keys(sortNamingScheme) as Array<SortKey>).map((key) => {

@@ -4,13 +4,12 @@ import type { FiltersProps } from '../types/FilterTypes';
 import type { SortDropdownProps } from '../types/SortTypes';
 import SortDropdown from "./SortDropdown";
 
-
-export default function FilterSortHeader({ filterContent, filters, dispatch, sortOrder, setsortOrder }: FiltersProps & SortDropdownProps) {
+export default function FilterSortHeader({ filterContent, filters, dispatch, sortOrder, setSortOrder }: FiltersProps & SortDropdownProps) {
   return (
     <div id="FilterSortHeader" className="flex flex-wrap justify-items-start w-full h16 gap-4 p-4">
       <SortDropdown 
         sortOrder={sortOrder}
-        setsortOrder={setsortOrder}
+        setSortOrder={setSortOrder}
       />
       <FilterDrawer
         filterContent={filterContent}

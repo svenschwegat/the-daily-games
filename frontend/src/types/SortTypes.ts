@@ -12,5 +12,5 @@ export type SortNamingSchemeKeys = {
 
 export type SortDropdownProps = {
     sortOrder: Set<SortKey>;
-    setsortOrder: (key: Set<SortKey>) => void;
+    setSortOrder: (key: Set<SortKey>) => void;
 }
