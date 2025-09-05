@@ -4,6 +4,7 @@ import GameGrid from "./GameGrid";
 import FilterSortHeader from "./FilterSortHeader";
 import type { Game } from "../types/GameTypes";
 import type { Filter, FilterState, FilterAction } from "../types/FilterTypes";
+import type { SortKey } from "@/types/SortTypes";
 
 interface HomeFrameworkProps {
   filterContent: Record<string, Filter[]>;
@@ -61,6 +62,7 @@ export default function HomeFramework({ filterContent, games }: HomeFrameworkPro
   }
 
   const [filters, dispatch] = React.useReducer(filterReducer, initialFilters);
+  const [sortOrder, setsortOrder] = React.useState(new Set(["recommended"]) as Set<SortKey>);
 
   return (
     <div id="game-grid-wrapper" className="h-full overflow-y-auto">
@@ -68,10 +70,13 @@ export default function HomeFramework({ filterContent, games }: HomeFrameworkPro
         filterContent={filterContent}
         filters={filters}
         dispatch={dispatch}
+        sortOrder={sortOrder}
+        setsortOrder={setsortOrder}
       />
       <GameGrid
         initialGames={games}
         filters={filters}
+        sortOrder={sortOrder}
       />
     </div>
   );

@@ -1,4 +1,5 @@
 import { FilterKey } from './FilterTypes';
+import { SortKey } from './SortTypes';
 
 export type Game = {
     id: number;
@@ -18,6 +19,7 @@ export type Game = {
 export type GameGridProps = {
   initialGames: Game[];
   filters: Record<FilterKey, number[]>;
+  sortOrder: Set<SortKey>;
 }
 
 export type GameGridImageProps = {

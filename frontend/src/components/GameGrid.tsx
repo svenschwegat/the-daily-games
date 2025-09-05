@@ -3,7 +3,7 @@ import type { Game, GameGridProps } from '../types/GameTypes';
 import type { FilterKey } from '../types/FilterTypes';
 import { filterNamingScheme } from '@/utils/FilterNamingScheme';
 
-export default function GameGrid({ initialGames, filters }: GameGridProps) {
+export default function GameGrid({ initialGames, filters, sortOrder }: GameGridProps) {
   const games = initialGames.filter((game: Game) => {
     for (const key in filterNamingScheme) {
       const filter = filterNamingScheme[key as FilterKey];
@@ -32,6 +32,21 @@ export default function GameGrid({ initialGames, filters }: GameGridProps) {
         </button>
       </div>
     );
+  }
+
+  // Sort games based on sortOrder
+  const sortKey = sortOrder.values().next().value;
+  switch (sortKey) {
+    case 'alphabet-a-z':
+      games.sort((a, b) => a.name.localeCompare(b.name));
+      break;
+    case 'alphabet-z-a':
+      games.sort((a, b) => b.name.localeCompare(a.name));
+      break;
+    case 'recommended':
+    default:
+      games.sort((a, b) => a.id - b.id);
+      break;
   }
 
   return (
