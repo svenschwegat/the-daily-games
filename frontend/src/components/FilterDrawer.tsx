@@ -19,8 +19,7 @@ export default function FilterDrawer({ filterContent, filters, dispatch }: Filte
         onOpenChange={onOpenChange}
         placement={'left'}
         backdrop={'transparent'}
-        isDismissable={false}
-        size={"md"}
+        size={"sm"}
       > 
         <DrawerContent>
           {(onClose) => (

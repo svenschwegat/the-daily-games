@@ -7,15 +7,15 @@ import SortDropdown from "./SortDropdown";
 
 export default function FilterSortHeader({ filterContent, filters, dispatch, sortOrder, setsortOrder }: FiltersProps & SortDropdownProps) {
   return (
-    <div id="FilterSortHeader" className="flex flex-grid justify-between w-full h16 p-4">
+    <div id="FilterSortHeader" className="flex flex-wrap justify-items-start w-full h16 gap-4 p-4">
+      <SortDropdown 
+        sortOrder={sortOrder}
+        setsortOrder={setsortOrder}
+      />
       <FilterDrawer
         filterContent={filterContent}
         filters={filters}
         dispatch={dispatch}
-      />
-      <SortDropdown 
-        sortOrder={sortOrder}
-        setsortOrder={setsortOrder}
       />
       <FilterChips
         filterContent={filterContent}

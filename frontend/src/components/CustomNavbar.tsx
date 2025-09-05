@@ -14,7 +14,6 @@ export default function CustomNavbar() {
                     </span>
                 </a>
             </li>
-            <li className="w-7/10 min-w-1/10 max-w-7/10"/>
         </ul>
     );
 }

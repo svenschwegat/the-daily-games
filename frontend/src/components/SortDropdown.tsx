@@ -12,7 +12,7 @@ export default function SortDropdown({ sortOrder, setsortOrder }: SortDropdownPr
           color={'secondary'}
           startContent={<ButtonIcon type={'sort'} width={20} height={20} color="#ffffff" />}
         >
-          Sort - {sortNamingScheme[sortOrder.values().next().value as SortKey].label}
+          Sort - {sortNamingScheme[sortOrder.values().next().value as SortKey].short_label}
         </Button>
       </DropdownTrigger>
       <DropdownMenu

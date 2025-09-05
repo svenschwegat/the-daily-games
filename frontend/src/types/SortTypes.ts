@@ -3,6 +3,7 @@ export type SortKey = 'recommended' | 'alphabet-a-z' | 'alphabet-z-a';
 export type SortNamingScheme = {
     key: SortKey;
     label: string;
+    short_label: string;
 }
 
 export type SortNamingSchemeKeys = {
