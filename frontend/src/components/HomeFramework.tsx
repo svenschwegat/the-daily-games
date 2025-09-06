@@ -63,20 +63,26 @@ export default function HomeFramework({ filterContent, games }: HomeFrameworkPro
 
   const [filters, dispatch] = React.useReducer(filterReducer, initialFilters);
   const [sortOrder, setSortOrder] = React.useState(new Set(["recommended"]) as Set<SortKey>);
+  const [searchValue, setSearchValue] = React.useState("");
 
   return (
-    <div id="game-grid-wrapper" className="h-full overflow-y-auto">
+    <div id="game-grid-wrapper">
       <FilterSortHeader
         filterContent={filterContent}
         filters={filters}
         dispatch={dispatch}
+
         sortOrder={sortOrder}
         setSortOrder={setSortOrder}
+        
+        setSearchValue={setSearchValue}
+        games={games}
       />
       <GameGrid
         initialGames={games}
         filters={filters}
         sortOrder={sortOrder}
+        searchValue={searchValue}
       />
     </div>
   );

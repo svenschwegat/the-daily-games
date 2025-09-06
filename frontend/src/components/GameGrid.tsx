@@ -1,10 +1,12 @@
 import GameGridCard from './GameGridCard';
+import { Button } from "@heroui/react";
 import type { Game, GameGridProps } from '../types/GameTypes';
 import type { FilterKey } from '../types/FilterTypes';
+
 import { filterNamingScheme } from '@/utils/FilterNamingScheme';
 
-export default function GameGrid({ initialGames, filters, sortOrder }: GameGridProps) {
-  const games = initialGames.filter((game: Game) => {
+export default function GameGrid({ initialGames, filters, sortOrder, searchValue }: GameGridProps) {
+  let games = initialGames.filter((game: Game) => {
     for (const key in filterNamingScheme) {
       const filter = filterNamingScheme[key as FilterKey];
       const gameColumnValue = game[filter.id_column];
@@ -21,19 +23,6 @@ export default function GameGrid({ initialGames, filters, sortOrder }: GameGridP
     return true;
   });
 
-  if (!games || games.length === 0) {
-    return (
-      <div id="no-games" className="flex flex-col p-4">
-        <p>No games with the chosen filters available.</p>
-        <button
-          className="ml-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-          onClick={() => window.location.reload()}>
-          Reset Filters
-        </button>
-      </div>
-    );
-  }
-
   // Sort games based on sortOrder
   const sortKey = sortOrder.values().next().value;
   switch (sortKey) {
@@ -47,6 +36,24 @@ export default function GameGrid({ initialGames, filters, sortOrder }: GameGridP
     default:
       games.sort((a, b) => a.id - b.id);
       break;
+  }
+
+  // Filter games based on searchValue
+  const searchLower = searchValue.toLowerCase();
+  games = games.filter((game) => game.name.toLowerCase().includes(searchLower) || game.description.toLowerCase().includes(searchLower));
+
+  if (!games || games.length === 0) {
+    return (
+      <div id="no-games" className="flex flex-col gap-4 items-center">
+        <span>No games with the chosen filters available</span>
+        <Button
+          color="primary"
+          onPress={() => window.location.reload()}
+        >
+          Reset Filters
+        </Button>
+      </div>
+    );
   }
 
   return (

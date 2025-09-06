@@ -20,6 +20,7 @@ export type GameGridProps = {
   initialGames: Game[];
   filters: Record<FilterKey, number[]>;
   sortOrder: Set<SortKey>;
+  searchValue: string;
 }
 
 export type GameGridImageProps = {
