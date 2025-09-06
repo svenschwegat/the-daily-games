@@ -1,4 +1,4 @@
-import { FilterKey } from './FilterTypes';
+import { Filter, FilterKey } from './FilterTypes';
 import { SortKey } from './SortTypes';
 
 export type Game = {
@@ -25,4 +25,9 @@ export type GameGridProps = {
 
 export type GameGridImageProps = {
   game: Game;
+}
+
+export type AddGameModalProps = {
+  games: Game[];
+  filterContent: Record<string, Filter[]>;
 }
