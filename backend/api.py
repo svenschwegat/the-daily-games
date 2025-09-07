@@ -1,5 +1,5 @@
 import os
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Body, Request
 from fastapi.middleware.cors import CORSMiddleware
 
 from contextlib import asynccontextmanager
@@ -57,3 +57,24 @@ async def get_filters(filter_type: str):
         return result
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+    
+@app.post("/game")
+async def insert_game(request: Request):
+    body = await request.json()
+    table = body.get("table")
+    data = body.get("data")
+    
+    db_service.authenticate_request(request)
+
+    try:
+        game_data = data_service.prepare_game_data(data)
+        result = data_service.insert_into_table(table, game_data)
+        # todo upload file to bucket with correct id
+        if result is None:
+            raise HTTPException(status_code=500, detail=f"Error inserting data into {table}")
+        return result
+    except Exception as e:
+        if(e.code == "42501"):
+            raise HTTPException(status_code=403, detail="Insert permission denied. Check your RLS policies.")
+        else: 
+            raise HTTPException(status_code=500, detail=str(e))

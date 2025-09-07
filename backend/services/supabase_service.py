@@ -1,4 +1,5 @@
 import os
+from fastapi import Request
 from supabase import create_client, Client
 from supabase.client import ClientOptions
 
@@ -22,3 +23,9 @@ class SupabaseService:
         if not url or not key:
             raise ValueError("SUPABASE_URL or SUPABASE_KEY is not set in the environment variables")
         return cls(url, key)
+    
+    def authenticate_request(self, request: Request):
+        auth_header = request.headers.get("authorization")
+        if auth_header and auth_header.startswith("Bearer "):
+            access_token = auth_header.split(" ", 1)[1]
+            self.client.auth.set_session(access_token, access_token)

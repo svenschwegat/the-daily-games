@@ -24,9 +24,21 @@ class DataService:
             .select(select_statement)
             .execute()
         )
-
-        response.data
-        if response is None:
-            raise Exception(f"Error fetching data from {table_name}: {response.error.message}")
         
         return response.data
+    
+    def insert_into_table(self, table_name: str, data: dict):
+        response = (
+            self.db.client
+            .table(table_name)
+            .insert(data)
+            .execute()
+        )
+        
+        return response.data
+
+    def prepare_game_data(self, data: dict):
+        print(data)
+        # Todo upload file to bucket with correct id
+        data.pop("file")
+        return data
