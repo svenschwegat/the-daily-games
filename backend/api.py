@@ -78,3 +78,16 @@ async def insert_game(request: Request):
             raise HTTPException(status_code=403, detail="Insert permission denied. Check your RLS policies.")
         else: 
             raise HTTPException(status_code=500, detail=str(e))
+
+@app.post("sign_in_user")
+async def sign_in_user(request: Request):
+    body = await request.json()
+    email = body.get("email")
+    password = body.get("password")
+
+    response = db_service.sign_in_user(email, password)
+
+    db_service.authenticate_request(
+        response.session.access_token, 
+        response.session.refresh_token
+    )  

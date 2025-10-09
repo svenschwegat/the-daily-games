@@ -29,3 +29,31 @@ class SupabaseService:
         if auth_header and auth_header.startswith("Bearer "):
             access_token = auth_header.split(" ", 1)[1]
             self.client.auth.set_session(access_token, access_token)
+
+    def sign_in_user(self, email, password):
+        response = self.client.auth.sign_in_with_password({
+            "email": email,
+            "password": password
+        })
+
+        return response
+    
+    def sign_out_user(self):
+        response = self.client.auth.sign_out()
+        return response
+    
+    def send_password_reset(self, email):
+        response = self.client.auth.reset_password_for_email(
+            email,
+            {
+                "redirect_to": os.environ.get("FRONTEND_URL") + "/update-password"
+            }
+        )
+        return response
+    
+    def update_user(self, attribute, attributeData):
+        response = self.client.auth.update_user(
+            {attribute: attributeData}
+        )
+
+        return response
