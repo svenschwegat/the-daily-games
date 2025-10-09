@@ -19,7 +19,7 @@ export default function FilterSortHeader({
   const showAddGameModal = false; // Placeholder
 
   return (
-    <div id="FilterSortHeader" className="flex flex-wrap items-center w-full gap-4 p-4 justify-between">
+    <div id="FilterSortHeader" className="flex flex-wrap items-center w-full gap-4 p-4 pl-20 pr-20 justify-between">
       <div id="SortAndFilterButtons" className="flex items-center gap-4">
         <SortDropdown
           sortOrder={sortOrder}
