@@ -7,7 +7,7 @@ import type { Filter, FilterKey } from "@/types/FilterTypes";
 import type { AddGameModalProps } from "@/types/GameTypes";
 
 export default function AddGameModalContent({ games, filterContent }: AddGameModalProps) {
-  games; // Todo for autocompleting name
+  void games;
   return (
     <div className="flex flex-col min-w-sm gap-4">
       <Input label="Name" name="name" isRequired type="text" />

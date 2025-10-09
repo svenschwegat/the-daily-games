@@ -1,5 +1,5 @@
 import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter } from "@heroui/react";
-import { Link, Button, useDisclosure, Input } from "@heroui/react";
+import { Button, useDisclosure, Input } from "@heroui/react";
 
 export default function UserSignInModal() {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();

@@ -2,7 +2,7 @@ import { addToast } from "@heroui/react";
 
 type insertGameProps = {
   table: string;
-  data: Record<string, any>;
+  data: Record<string, FormDataEntryValue>;
 }
 
 export default async function insertGame({ table, data }: insertGameProps) {

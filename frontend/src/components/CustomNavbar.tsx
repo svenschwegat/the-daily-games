@@ -1,7 +1,5 @@
 'use client'
-import { Navbar, NavbarBrand, NavbarContent, NavbarItem } from "@heroui/react";
-
-import UserSignInModal from "@/components/UserSignInModal";
+import { Navbar, NavbarBrand, NavbarContent } from "@heroui/react";
 
 export default function CustomNavbar() {
   return (
@@ -18,9 +16,6 @@ export default function CustomNavbar() {
         </a>
       </NavbarBrand>
       <NavbarContent justify="end">
-        <NavbarItem>
-          {/* <UserSignInModal /> */}
-        </NavbarItem>
       </NavbarContent>
 
     </Navbar>
