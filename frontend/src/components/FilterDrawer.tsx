@@ -12,7 +12,7 @@ export default function FilterDrawer({ filterContent, filters, dispatch }: Filte
         onPress={onOpen}
         startContent={<ButtonIcon type={'filter'} width={20} height={20} color="#ffffff" />}
       >
-        Filter Games
+        Filter
       </Button>
       <Drawer
         isOpen={isOpen}

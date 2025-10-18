@@ -34,7 +34,7 @@ export default function FilterSortHeader({
 
   return (
     <div id="FilterSortHeader" className="flex flex-wrap items-center w-full gap-4 p-4 lg:pl-20 lg:pr-20 justify-between">
-      <div id="SortAndFilterButtons" className="flex items-center gap-4">
+      <div id="SortAndFilterButtons" className="flex flex-wrap items-center gap-2">
         <SortDropdown
           sortOrder={sortOrder}
           setSortOrder={setSortOrder}
