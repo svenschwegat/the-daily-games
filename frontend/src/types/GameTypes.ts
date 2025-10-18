@@ -16,7 +16,7 @@ export type Game = {
     link: string;
     picture_link: string | null;
     ranking: number | null;
-    favicon_url: string | undefined;
+    favicon_url: string;
 }
 
 export type GameGridProps = {

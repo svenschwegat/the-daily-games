@@ -8,18 +8,28 @@ import AddGameModal from "./AddGameModal";
 import RandomGameModal from "./RandomGameButton";
 import GameGridSizeButton from "./GameGridSizeButton";
 
-import type { FiltersProps } from '../types/FilterTypes';
-import type { SortDropdownProps } from '../types/SortTypes';
+import type { Filter, FilterKey, FilterAction } from '../types/FilterTypes';
+import type { SortKey } from '../types/SortTypes';
 import type { Game, GameGridSize } from "../types/GameTypes";
+
+type FilterSortHeaderProps = {
+  filterContent: Record<FilterKey, Filter[]>,
+  filters: Record<FilterKey, number[]>,
+  dispatch: (action: FilterAction) => void,
+  sortOrder: Set<SortKey>,
+  setSortOrder: (key: Set<SortKey>) => void,
+  setSearchValue: (value: string) => void,
+  games: Game[],
+  gameGridSize: GameGridSize,
+  setGameGridSize: (size: GameGridSize) => void
+}
 
 export default function FilterSortHeader({
   filterContent, filters, dispatch,
   sortOrder, setSortOrder,
   setSearchValue,
-  games,
-  gameGridSize,
-  setGameGridSize
-}: FiltersProps & SortDropdownProps & { setSearchValue: (value: string) => void } & { games: Game[] } & { gameGridSize: GameGridSize, setGameGridSize: (size: GameGridSize) => void }) {
+  games, gameGridSize, setGameGridSize
+}: FilterSortHeaderProps) {
   const showAddGameModal = false; // Placeholder
 
   return (

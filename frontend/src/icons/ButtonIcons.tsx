@@ -59,7 +59,7 @@ const icon_grid_lg = ({ width = 50, height = 50, color = "#ffffff" }: SvgIconPro
 
 const icon_grid_sm = ({ width = 50, height = 50, color = "#ffffff" }: SvgIconProps): React.ReactNode => {
   return (
-    <svg width="800px" height="800px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg width={`${width}px`} height={`${height}px`} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M3.5 10H6.5V7H3.5V10Z" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
       <path d="M3.5 17H6.5V14H3.5V17Z" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
       <path d="M10.5 10H13.5V7H10.5V10Z" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
