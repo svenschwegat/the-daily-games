@@ -79,6 +79,11 @@ async def insert_game(request: Request):
         else: 
             raise HTTPException(status_code=500, detail=str(e))
 
+@app.get("/favicon")
+async def get_favicon(website_url: str):
+    from services.get_favicon import get_favicon
+    return get_favicon(website_url)
+
 @app.post("sign_in_user")
 async def sign_in_user(request: Request):
     body = await request.json()
