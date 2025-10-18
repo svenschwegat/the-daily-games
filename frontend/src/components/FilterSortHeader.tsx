@@ -6,17 +6,20 @@ import SortDropdown from "./SortDropdown";
 import SearchBar from "./SearchBar";
 import AddGameModal from "./AddGameModal";
 import RandomGameModal from "./RandomGameButton";
+import GameGridSizeButton from "./GameGridSizeButton";
 
 import type { FiltersProps } from '../types/FilterTypes';
 import type { SortDropdownProps } from '../types/SortTypes';
-import type { Game } from "../types/GameTypes";
+import type { Game, GameGridSize } from "../types/GameTypes";
 
 export default function FilterSortHeader({
   filterContent, filters, dispatch,
   sortOrder, setSortOrder,
   setSearchValue,
-  games
-}: FiltersProps & SortDropdownProps & { setSearchValue: (value: string) => void } & { games: Game[] }) {
+  games,
+  gameGridSize,
+  setGameGridSize
+}: FiltersProps & SortDropdownProps & { setSearchValue: (value: string) => void } & { games: Game[] } & { gameGridSize: GameGridSize, setGameGridSize: (size: GameGridSize) => void }) {
   const showAddGameModal = false; // Placeholder
 
   return (
@@ -38,6 +41,10 @@ export default function FilterSortHeader({
         />}
         <RandomGameModal
           games={games}
+        />
+        <GameGridSizeButton 
+          gameGridSize={gameGridSize}
+          setGameGridSize={setGameGridSize}
         />
       </div>
       <div id="FilterChips" className="w-full sm:flex-1 sm:flex sm:justify-center">

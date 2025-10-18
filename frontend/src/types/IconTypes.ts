@@ -11,5 +11,5 @@ export interface FilterIconProps extends SvgIconProps {
 }
 
 export interface ButtonIconProps extends SvgIconProps {
-    type: 'filter' | 'sort' | 'die';
+    type: 'filter' | 'sort' | 'die' | 'grid_sm' | 'grid_lg';
 }

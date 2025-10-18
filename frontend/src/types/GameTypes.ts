@@ -1,6 +1,8 @@
 import { Filter, FilterKey } from './FilterTypes';
 import { SortKey } from './SortTypes';
 
+export type GameGridSize = 'sm' | 'lg';
+
 export type Game = {
     id: number;
     name: string;
@@ -14,10 +16,12 @@ export type Game = {
     link: string;
     picture_link: string | null;
     ranking: number | null;
+    favicon_url: string | undefined;
 }
 
 export type GameGridProps = {
   games: Game[];
+  gameGridSize: GameGridSize;
 }
 
 export type GameGridImageProps = {
@@ -34,4 +38,9 @@ export type FilterSortGamesProps = {
   filters: Record<FilterKey, number[]>;
   sortOrder: Set<SortKey>;
   searchValue: string;
+}
+
+export type GameGridSizeButtonProps = {
+  gameGridSize: GameGridSize;
+  setGameGridSize: (size: GameGridSize) => void;
 }
