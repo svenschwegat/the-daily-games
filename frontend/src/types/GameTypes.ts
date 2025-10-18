@@ -17,10 +17,7 @@ export type Game = {
 }
 
 export type GameGridProps = {
-  initialGames: Game[];
-  filters: Record<FilterKey, number[]>;
-  sortOrder: Set<SortKey>;
-  searchValue: string;
+  games: Game[];
 }
 
 export type GameGridImageProps = {
@@ -30,4 +27,11 @@ export type GameGridImageProps = {
 export type AddGameModalProps = {
   games: Game[];
   filterContent: Record<string, Filter[]>;
+}
+
+export type FilterSortGamesProps = {
+  initialGames: Game[];
+  filters: Record<FilterKey, number[]>;
+  sortOrder: Set<SortKey>;
+  searchValue: string;
 }
