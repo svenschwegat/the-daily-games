@@ -35,7 +35,11 @@ export default function RandomGameModal({ games }: RandomGameModalProps) {
                 Chosen random game
               </ModalHeader>
               <ModalBody>
-                <GameGridCard game={randomGame} />
+                <GameGridCard 
+                  game={randomGame}
+                  favoriteGames={new Set<number>()}
+                  setFavoriteGames={() => {}}
+                />
               </ModalBody>
             </>
           )}

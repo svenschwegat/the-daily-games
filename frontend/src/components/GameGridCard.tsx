@@ -1,4 +1,3 @@
-import type { Game } from '../types/GameTypes';
 import GameGridImage from './GameGridImage';
 import { Card, CardBody, CardFooter, Divider, Link } from '@heroui/react'
 import FavoritesAddButton from '@/components/FavoritesAddButton';
