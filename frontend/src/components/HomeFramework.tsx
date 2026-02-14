@@ -69,8 +69,10 @@ export default function HomeFramework({ filterContent, games }: HomeFrameworkPro
   const [searchValue, setSearchValue] = React.useState("");
 
   const [gameGridSize, setGameGridSize] = React.useState('lg' as GameGridSize);
-
-  const filteredSortedGames = filterSortGames({ initialGames: games, filters, sortOrder, searchValue });
+  const [favoriteGames, setFavoriteGames] = React.useState<Set<number>>(new Set());
+  const [showFavorites, setShowFavorites] = React.useState(false);
+  console.log('fav', favoriteGames);
+  const filteredSortedGames = filterSortGames({ initialGames: games, filters, sortOrder, searchValue, favoriteGames, showFavorites });
 
   return (
     <div id="game-grid-wrapper">
@@ -87,10 +89,16 @@ export default function HomeFramework({ filterContent, games }: HomeFrameworkPro
 
         gameGridSize={gameGridSize}
         setGameGridSize={setGameGridSize}
+
+        showFavorites={showFavorites}
+        setShowFavorites={setShowFavorites}
       />
       <GameGrid
         games={filteredSortedGames}
         gameGridSize={gameGridSize}
+
+        favoriteGames={favoriteGames}
+        setFavoriteGames={setFavoriteGames}
       />
     </div>
   );

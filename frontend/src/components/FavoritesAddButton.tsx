@@ -1,18 +1,21 @@
 import React from "react";
 import { Link, Button } from "@heroui/react";
 import { ButtonIcon } from "@/icons/ButtonIcons";
+import type { FavoritesAddButtonProps } from "@/types/FavoritesTypes";
 
-type FavoritesAddButton = {
-  gameId: number
-}
-export default function FavoritesAddButton({gameId}: FavoritesAddButton) {
-  const [favorites, setFavorites] = React.useState([] as number[]);
+export default function FavoritesAddButton({gameId, favoriteGames, setFavoriteGames}: FavoritesAddButtonProps) {
   const [color, setColor] = React.useState("#000000");
 
   const updateFavorites = (gameId: number) => {
-    console.log(gameId);
-    const newColor = color === "#000000" ? "#b74949ff" : "#000000";
-    setColor(newColor);
+    const newFavorites = new Set(favoriteGames);
+    if (newFavorites.has(gameId)) {
+      newFavorites.delete(gameId);
+      setColor("#000000");
+    } else {
+      newFavorites.add(gameId);
+      setColor("#b74949ff");
+    }
+    setFavoriteGames(newFavorites);
   };
 
   return (

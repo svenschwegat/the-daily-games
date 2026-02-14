@@ -23,15 +23,18 @@ type FilterSortHeaderProps = {
   games: Game[],
   gameGridSize: GameGridSize,
   setGameGridSize: (size: GameGridSize) => void
+  showFavorites: boolean;
+  setShowFavorites: (show: boolean) => void;
 }
 
 export default function FilterSortHeader({
   filterContent, filters, dispatch,
   sortOrder, setSortOrder,
   setSearchValue,
-  games, gameGridSize, setGameGridSize
+  games, gameGridSize, setGameGridSize,
+  showFavorites, setShowFavorites
 }: FilterSortHeaderProps) {
-  const showAddGameModal = false; // Placeholder
+  const showAddGameModal = false;
 
   return (
     <div id="FilterSortHeader" className="flex flex-wrap items-center w-full gap-4 p-4 lg:pl-20 lg:pr-20 justify-between">
@@ -57,7 +60,10 @@ export default function FilterSortHeader({
           gameGridSize={gameGridSize}
           setGameGridSize={setGameGridSize}
         />
-        <FavoritesShowButton />
+        <FavoritesShowButton 
+          showFavorites={showFavorites}
+          setShowFavorites={setShowFavorites}
+        />
       </div>
       <div id="FilterChips" className="w-full sm:flex-1 sm:flex sm:justify-center">
         <FilterChips

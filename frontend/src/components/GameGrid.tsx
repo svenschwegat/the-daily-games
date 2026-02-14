@@ -3,7 +3,7 @@ import GameGridCardSmall from './GameGridCardSmall';
 import { Button } from "@heroui/react";
 import type { Game, GameGridProps } from '../types/GameTypes';
 
-export default function GameGrid({ games, gameGridSize }: GameGridProps) {
+export default function GameGrid({ games, gameGridSize, favoriteGames, setFavoriteGames }: GameGridProps) {
   if (!games || games.length === 0) {
     return (
       <div id="no-games" className="flex flex-col gap-4 items-center">
@@ -41,7 +41,12 @@ export default function GameGrid({ games, gameGridSize }: GameGridProps) {
           lg:grid-cols-2 lg:pl-20 lg:pr-20"
         >
           {games.map((game: Game) => (
-            <GameGridCard game={game} key={game.id} />
+            <GameGridCard 
+              game={game} 
+              favoriteGames={favoriteGames}
+              setFavoriteGames={setFavoriteGames}
+              key={game.id} 
+            />
           ))}
         </div>);
   }

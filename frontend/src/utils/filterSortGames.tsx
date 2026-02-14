@@ -3,7 +3,12 @@ import type { FilterKey } from '../types/FilterTypes';
 
 import { filterNamingScheme } from '@/utils/FilterNamingScheme';
 
-export default function filterSortGames({ initialGames, filters, sortOrder, searchValue}: FilterSortGamesProps): Game[] {
+export default function filterSortGames({ initialGames, filters, sortOrder, searchValue, favoriteGames, showFavorites}: FilterSortGamesProps): Game[] {
+  // Show/hide favorites
+  if(showFavorites){
+    initialGames = initialGames.filter(game => favoriteGames.has(game.id));
+  }
+  
   // Filter games based on filters  
   let games = initialGames.filter((game: Game) => {
     for (const key in filterNamingScheme) {

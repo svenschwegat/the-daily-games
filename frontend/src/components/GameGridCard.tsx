@@ -2,8 +2,9 @@ import type { Game } from '../types/GameTypes';
 import GameGridImage from './GameGridImage';
 import { Card, CardBody, CardFooter, Divider, Link } from '@heroui/react'
 import FavoritesAddButton from '@/components/FavoritesAddButton';
+import type { GameGridCardProps } from '../types/GameTypes';
 
-export default function GameGridCard({ game }: { game: Game }) {
+export default function GameGridCard({ game, favoriteGames, setFavoriteGames }: GameGridCardProps) {
   return (
     <Card isPressable>
       <CardBody>
@@ -28,6 +29,8 @@ export default function GameGridCard({ game }: { game: Game }) {
         </Link>
         <FavoritesAddButton 
           gameId={game.id}
+          favoriteGames={favoriteGames}
+          setFavoriteGames={setFavoriteGames}
         />
       </CardFooter>
     </Card>

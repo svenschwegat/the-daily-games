@@ -22,6 +22,14 @@ export type Game = {
 export type GameGridProps = {
   games: Game[];
   gameGridSize: GameGridSize;
+  favoriteGames: Set<number>;
+  setFavoriteGames: (favorites: Set<number>) => void;
+}
+
+export type GameGridCardProps= {
+  game: Game;
+  favoriteGames: Set<number>;
+  setFavoriteGames: (favorites: Set<number>) => void;
 }
 
 export type GameGridImageProps = {
@@ -38,6 +46,8 @@ export type FilterSortGamesProps = {
   filters: Record<FilterKey, number[]>;
   sortOrder: Set<SortKey>;
   searchValue: string;
+  favoriteGames: Set<number>;
+  showFavorites: boolean;
 }
 
 export type GameGridSizeButtonProps = {
