@@ -1,6 +1,7 @@
 import type { Game } from '../types/GameTypes';
 import GameGridImage from './GameGridImage';
 import { Card, CardBody, CardFooter, Divider, Link } from '@heroui/react'
+import FavoritesAddButton from '@/components/FavoritesAddButton';
 
 export default function GameGridCard({ game }: { game: Game }) {
   return (
@@ -16,7 +17,7 @@ export default function GameGridCard({ game }: { game: Game }) {
 
       </CardBody>
       <Divider />
-      <CardFooter className="flex gap-4 justify-center">
+      <CardFooter className="flex gap-4 justify-around">
         <Link
           isExternal
           showAnchorIcon
@@ -25,6 +26,9 @@ export default function GameGridCard({ game }: { game: Game }) {
         >
           Play {game.name}
         </Link>
+        <FavoritesAddButton 
+          gameId={game.id}
+        />
       </CardFooter>
     </Card>
   );

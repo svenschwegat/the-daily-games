@@ -11,6 +11,7 @@ import GameGridSizeButton from "./GameGridSizeButton";
 import type { Filter, FilterKey, FilterAction } from '../types/FilterTypes';
 import type { SortKey } from '../types/SortTypes';
 import type { Game, GameGridSize } from "../types/GameTypes";
+import FavoritesShowButton from "./FavoritesShowButton";
 
 type FilterSortHeaderProps = {
   filterContent: Record<FilterKey, Filter[]>,
@@ -56,6 +57,7 @@ export default function FilterSortHeader({
           gameGridSize={gameGridSize}
           setGameGridSize={setGameGridSize}
         />
+        <FavoritesShowButton />
       </div>
       <div id="FilterChips" className="w-full sm:flex-1 sm:flex sm:justify-center">
         <FilterChips
