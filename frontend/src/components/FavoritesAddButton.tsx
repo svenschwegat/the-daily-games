@@ -6,14 +6,16 @@ import type { FavoritesAddButtonProps } from "@/types/FavoritesTypes";
 export default function FavoritesAddButton({gameId, favoriteGames, setFavoriteGames}: FavoritesAddButtonProps) {
   const [color, setColor] = React.useState("#000000");
 
+  React.useEffect(() => {
+    setColor(favoriteGames.has(gameId) ? "#b74949ff" : "#000000");
+  }, [favoriteGames, gameId]);
+
   const updateFavorites = (gameId: number) => {
     const newFavorites = new Set(favoriteGames);
     if (newFavorites.has(gameId)) {
       newFavorites.delete(gameId);
-      setColor("#000000");
     } else {
       newFavorites.add(gameId);
-      setColor("#b74949ff");
     }
     setFavoriteGames(newFavorites);
   };

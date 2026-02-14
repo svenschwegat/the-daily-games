@@ -3,7 +3,7 @@ import React from "react";
 import GameGrid from "./GameGrid";
 import FilterSortHeader from "./FilterSortHeader";
 import filterSortGames from "@/utils/filterSortGames";
-
+import { getCookieFavorites, setCookieFavorites } from "@/utils/handleCookies";
 
 import type { Game, GameGridSize } from "../types/GameTypes";
 import type { Filter, FilterState, FilterAction } from "../types/FilterTypes";
@@ -69,9 +69,13 @@ export default function HomeFramework({ filterContent, games }: HomeFrameworkPro
   const [searchValue, setSearchValue] = React.useState("");
 
   const [gameGridSize, setGameGridSize] = React.useState('lg' as GameGridSize);
-  const [favoriteGames, setFavoriteGames] = React.useState<Set<number>>(new Set());
+  
+  const favoriteGamesCookies = getCookieFavorites();
+  const [favoriteGames, setFavoriteGames] = React.useState<Set<number>>(favoriteGamesCookies);
+  setCookieFavorites(favoriteGames);
+  
   const [showFavorites, setShowFavorites] = React.useState(false);
-  console.log('fav', favoriteGames);
+
   const filteredSortedGames = filterSortGames({ initialGames: games, filters, sortOrder, searchValue, favoriteGames, showFavorites });
 
   return (
