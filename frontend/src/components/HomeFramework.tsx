@@ -3,7 +3,7 @@ import React from "react";
 import GameGrid from "./GameGrid";
 import FilterSortHeader from "./FilterSortHeader";
 import filterSortGames from "@/utils/filterSortGames";
-import { getCookieFavorites, setCookieFavorites } from "@/utils/handleCookies";
+import { getCookie, useUpdateCookieAfterSsr } from "@/utils/handleCookies";
 
 import type { Game, GameGridSize } from "../types/GameTypes";
 import type { Filter, FilterState, FilterAction } from "../types/FilterTypes";
@@ -68,13 +68,38 @@ export default function HomeFramework({ filterContent, games }: HomeFrameworkPro
   const [sortOrder, setSortOrder] = React.useState(new Set(["recommended"]) as Set<SortKey>);
   const [searchValue, setSearchValue] = React.useState("");
 
-  const [gameGridSize, setGameGridSize] = React.useState('lg' as GameGridSize);
-  
-  const favoriteGamesCookies = getCookieFavorites();
-  const [favoriteGames, setFavoriteGames] = React.useState<Set<number>>(favoriteGamesCookies);
-  setCookieFavorites(favoriteGames);
-  
+  // Handle hydration mismatch for cookies
+  const [mounted, setMounted] = React.useState(false);
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const [gameGridSize, setGameGridSize] = React.useState<GameGridSize>('lg');
+  const [favoriteGames, setFavoriteGames] = React.useState<Set<number>>(new Set());
   const [showFavorites, setShowFavorites] = React.useState(false);
+
+  React.useEffect(() => {
+    if (mounted) {
+      const gameGridSizeCookie = getCookie('gameGridSize') as string | null;
+      if (gameGridSizeCookie && gameGridSizeCookie !== gameGridSize) {
+        setGameGridSize(gameGridSizeCookie as GameGridSize);
+      }
+
+      const favoriteGamesCookies = getCookie('favoriteGames') as Set<number> | null;
+      if (favoriteGamesCookies) {
+        setFavoriteGames(favoriteGamesCookies);
+      }
+
+      const showFavoritesCookie = getCookie('showFavorites') as boolean | null;
+      if (showFavoritesCookie !== null && showFavoritesCookie !== showFavorites) {
+        setShowFavorites(showFavoritesCookie);
+      }
+    }
+  }, [mounted]);
+
+  useUpdateCookieAfterSsr('gameGridSize', gameGridSize, mounted);
+  useUpdateCookieAfterSsr('favoriteGames', favoriteGames, mounted);
+  useUpdateCookieAfterSsr('showFavorites', showFavorites, mounted);
 
   const filteredSortedGames = filterSortGames({ initialGames: games, filters, sortOrder, searchValue, favoriteGames, showFavorites });
 
@@ -87,7 +112,7 @@ export default function HomeFramework({ filterContent, games }: HomeFrameworkPro
 
         sortOrder={sortOrder}
         setSortOrder={setSortOrder}
-        
+
         setSearchValue={setSearchValue}
         games={games}
 

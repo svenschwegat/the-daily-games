@@ -4,7 +4,7 @@ import { FavoritesShowButtonProps } from "@/types/FavoritesTypes";
 import { useState } from "react";
 
 export default function FavoritesShowButton({showFavorites, setShowFavorites}: FavoritesShowButtonProps) {
-  const [color, setColor] = useState("#000000");
+  const [color, setColor] = useState(showFavorites ? "#000000" : "#b74949ff");
 
   const toggleFavorites = () => {
     setShowFavorites(!showFavorites);
