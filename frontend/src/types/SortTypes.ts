@@ -13,4 +13,5 @@ export type SortNamingSchemeKeys = {
 export type SortDropdownProps = {
     sortOrder: Set<SortKey>;
     setSortOrder: (key: Set<SortKey>) => void;
+    isMobile: boolean;
 }

@@ -1,14 +1,9 @@
-import { useState } from "react";
 import { Dropdown, DropdownTrigger, DropdownMenu, DropdownItem, Button } from "@heroui/react";
 import { ButtonIcon } from "@/icons/ButtonIcons";
 import { sortNamingScheme } from "@/utils/SortNamingScheme";
-import useIsMobile from "@/utils/isMobile";
 import type { SortKey, SortDropdownProps } from "@/types/SortTypes";
 
-export default function SortDropdown({ sortOrder, setSortOrder }: SortDropdownProps) {
-  const [isMobile, setIsMobile] = useState(true);
-  useIsMobile(setIsMobile);
-
+export default function SortDropdown({ sortOrder, setSortOrder, isMobile }: SortDropdownProps) {
   const buttonName = isMobile ? '' : `Sort - ${sortNamingScheme[sortOrder.values().next().value as SortKey].short_label}`;
 
   return (

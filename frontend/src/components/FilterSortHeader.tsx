@@ -7,6 +7,7 @@ import SearchBar from "./SearchBar";
 import AddGameModal from "./AddGameModal";
 import RandomGameModal from "./RandomGameButton";
 import GameGridSizeButton from "./GameGridSizeButton";
+import SearchButton from "./SearchButton";
 
 import type { Filter, FilterKey, FilterAction } from '../types/FilterTypes';
 import type { SortKey } from '../types/SortTypes';
@@ -25,6 +26,7 @@ type FilterSortHeaderProps = {
   setGameGridSize: (size: GameGridSize) => void
   showFavorites: boolean;
   setShowFavorites: (show: boolean) => void;
+  isMobile: boolean;
 }
 
 export default function FilterSortHeader({
@@ -32,9 +34,14 @@ export default function FilterSortHeader({
   sortOrder, setSortOrder,
   setSearchValue,
   games, gameGridSize, setGameGridSize,
-  showFavorites, setShowFavorites
+  showFavorites, setShowFavorites,
+  isMobile
 }: FilterSortHeaderProps) {
   const showAddGameModal = false;
+  const [showSearchBar, setShowSearchBar] = React.useState(false);
+  const toggleSearchBar = () => {
+    setShowSearchBar((prev) => !prev);
+  };
 
   return (
     <div id="FilterSortHeader" className="flex flex-wrap items-center w-full gap-4 p-4 lg:pl-20 lg:pr-20 justify-between">
@@ -42,28 +49,35 @@ export default function FilterSortHeader({
         <SortDropdown
           sortOrder={sortOrder}
           setSortOrder={setSortOrder}
+          isMobile={isMobile}
         />
         <FilterDrawer
           filterContent={filterContent}
           filters={filters}
           dispatch={dispatch}
+          isMobile={isMobile}
         />
-        {showAddGameModal && 
-        <AddGameModal 
-          games={games} 
-          filterContent={filterContent} 
-        />}
+        {showAddGameModal &&
+          <AddGameModal
+            games={games}
+            filterContent={filterContent}
+          />}
         <RandomGameModal
           games={games}
         />
-        <GameGridSizeButton 
+        <GameGridSizeButton
           gameGridSize={gameGridSize}
           setGameGridSize={setGameGridSize}
         />
-        <FavoritesShowButton 
+        <FavoritesShowButton
           showFavorites={showFavorites}
           setShowFavorites={setShowFavorites}
         />
+        {isMobile ?
+          <SearchButton
+            toggleSearchBar={toggleSearchBar}
+          /> : null
+        }
       </div>
       <div id="FilterChips" className="w-full sm:flex-1 sm:flex sm:justify-center">
         <FilterChips
@@ -73,10 +87,12 @@ export default function FilterSortHeader({
         />
       </div>
       <div id="SearchBar" className="flex items-center justify-end">
-        <SearchBar
-          games={games}
-          setSearchValue={setSearchValue}
-        />
+        {!isMobile || showSearchBar ? (
+          <SearchBar
+            games={games}
+            setSearchValue={setSearchValue}
+          />
+        ) : null}
       </div>
     </div>
   );

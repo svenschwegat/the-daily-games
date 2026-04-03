@@ -4,6 +4,7 @@ import GameGrid from "./GameGrid";
 import FilterSortHeader from "./FilterSortHeader";
 import filterSortGames from "@/utils/filterSortGames";
 import { getCookie, useUpdateCookieAfterSsr } from "@/utils/handleCookies";
+import isMobileAfterSsr from "@/utils/isMobile";
 
 import type { Game, GameGridSize } from "../types/GameTypes";
 import type { Filter, FilterState, FilterAction } from "../types/FilterTypes";
@@ -68,6 +69,8 @@ export default function HomeFramework({ filterContent, games }: HomeFrameworkPro
   const [sortOrder, setSortOrder] = React.useState(new Set(["recommended"]) as Set<SortKey>);
   const [searchValue, setSearchValue] = React.useState("");
 
+  const [isMobile, setIsMobile] = React.useState(true);
+
   // Handle hydration mismatch for cookies
   const [mounted, setMounted] = React.useState(false);
   React.useEffect(() => {
@@ -80,6 +83,8 @@ export default function HomeFramework({ filterContent, games }: HomeFrameworkPro
 
   React.useEffect(() => {
     if (mounted) {
+      isMobileAfterSsr(setIsMobile);
+
       const gameGridSizeCookie = getCookie('gameGridSize') as string | null;
       if (gameGridSizeCookie && gameGridSizeCookie !== gameGridSize) {
         setGameGridSize(gameGridSizeCookie as GameGridSize);
@@ -121,6 +126,8 @@ export default function HomeFramework({ filterContent, games }: HomeFrameworkPro
 
         showFavorites={showFavorites}
         setShowFavorites={setShowFavorites}
+
+        isMobile={isMobile}
       />
       <GameGrid
         games={filteredSortedGames}

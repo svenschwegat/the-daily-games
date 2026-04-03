@@ -31,6 +31,13 @@ export type FiltersProps = {
     dispatch: (action: FilterAction) => void;
 }
 
+export type FilterDrawerProps = {
+    filterContent: Record<FilterKey, Filter[]>;
+    filters: Record<FilterKey, number[]>;
+    dispatch: (action: FilterAction) => void;
+    isMobile: boolean;
+}
+
 export type CreateFilterCheckboxProps = {
     items: Record<FilterKey, Filter[]>;
     selected: Record<FilterKey, number[]>;

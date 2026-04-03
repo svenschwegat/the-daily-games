@@ -1,15 +1,10 @@
-import { useState } from "react";
 import { Drawer, DrawerContent, DrawerHeader, DrawerBody, DrawerFooter, Button, useDisclosure } from "@heroui/react";
 import { ButtonIcon } from "@/icons/ButtonIcons";
-import { FiltersProps } from "@/types/FilterTypes";
-import useIsMobile from "@/utils/isMobile";
+import { FilterDrawerProps } from "@/types/FilterTypes";
 import Filters from "./Filters";
 
-export default function FilterDrawer({ filterContent, filters, dispatch }: FiltersProps) {
+export default function FilterDrawer({ filterContent, filters, dispatch, isMobile }: FilterDrawerProps) {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
-  const [isMobile, setIsMobile] = useState(true);
-  useIsMobile(setIsMobile);
-
   const buttonName = isMobile ? '' : 'Filter';
 
   return (

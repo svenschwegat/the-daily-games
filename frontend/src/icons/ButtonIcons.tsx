@@ -15,6 +15,8 @@ export const ButtonIcon = ({ type, width = 50, height = 50, color = "#ffffff" }:
       return icon_grid_lg({ width, height, color })
     case 'grid_sm':
       return icon_grid_sm({ width, height, color })
+    case 'search':
+      return icon_search({ width, height, color })
     default:
       return null;
   }
@@ -50,8 +52,8 @@ const icon_die = ({ width = 50, height = 50, color = "#ffffff" }: SvgIconProps):
 const icon_heart = ({ width = 50, height = 50, color = "#ffffff" }: SvgIconProps): React.ReactNode => {
   return (
     <svg width={`${width}px`} height={`${height}px`} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path fillRule="evenodd" clipRule="evenodd" d="M12 6.00019C10.2006 3.90317 7.19377 3.2551 4.93923 5.17534C2.68468 7.09558 2.36727 10.3061 4.13778 12.5772C5.60984 14.4654 10.0648 18.4479 11.5249 19.7369C11.6882 19.8811 11.7699 19.9532 11.8652 19.9815C11.9483 20.0062 12.0393 20.0062 12.1225 19.9815C12.2178 19.9532 12.2994 19.8811 12.4628 19.7369C13.9229 18.4479 18.3778 14.4654 19.8499 12.5772C21.6204 10.3061 21.3417 7.07538 19.0484 5.17534C16.7551 3.2753 13.7994 3.90317 12 6.00019Z" 
-        stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+      <path fillRule="evenodd" clipRule="evenodd" d="M12 6.00019C10.2006 3.90317 7.19377 3.2551 4.93923 5.17534C2.68468 7.09558 2.36727 10.3061 4.13778 12.5772C5.60984 14.4654 10.0648 18.4479 11.5249 19.7369C11.6882 19.8811 11.7699 19.9532 11.8652 19.9815C11.9483 20.0062 12.0393 20.0062 12.1225 19.9815C12.2178 19.9532 12.2994 19.8811 12.4628 19.7369C13.9229 18.4479 18.3778 14.4654 19.8499 12.5772C21.6204 10.3061 21.3417 7.07538 19.0484 5.17534C16.7551 3.2753 13.7994 3.90317 12 6.00019Z"
+        stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   );
 }
@@ -78,4 +80,12 @@ const icon_grid_sm = ({ width = 50, height = 50, color = "#ffffff" }: SvgIconPro
       <path d="M17.5 10H20.5V7H17.5V10Z" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
       <path d="M17.5 17H20.5V14H17.5V17Z" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
     </svg>);
+}
+
+const icon_search = ({ width = 50, height = 50, color = "#ffffff" }: SvgIconProps): React.ReactNode => {
+  return (
+    <svg width={`${width}px`} height={`${height}px`} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M14.9536 14.9458L21 21M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
 }
