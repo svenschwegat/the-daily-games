@@ -1,14 +1,17 @@
 import { Button } from "@heroui/react";
 import { ButtonIcon } from "@/icons/ButtonIcons"
 import { FavoritesShowButtonProps } from "@/types/FavoritesTypes";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function FavoritesShowButton({showFavorites, setShowFavorites}: FavoritesShowButtonProps) {
-  const [color, setColor] = useState(showFavorites ? "#000000" : "#b74949ff");
+  const [color, setColor] = useState("#000000");
+
+  useEffect(() => {
+    setColor(showFavorites ? "#b74949ff" : "#000000");
+  }, [showFavorites]);
 
   const toggleFavorites = () => {
     setShowFavorites(!showFavorites);
-    setColor(showFavorites ? "#000000" : "#b74949ff");
   }
 
   return (
