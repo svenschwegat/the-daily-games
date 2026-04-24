@@ -5,7 +5,11 @@ import type { GameGridCardProps } from '../types/GameTypes';
 
 export default function GameGridCard({ game, favoriteGames, setFavoriteGames }: GameGridCardProps) {
   return (
-    <Card isPressable>
+    <Card
+      key={`game-card-${game.id}`}
+      onPress={() => window.open(game.link, '_blank')}
+      isPressable
+    >
       <CardBody>
         <GameGridImage game={game} />
         <div className="text-xl font-bold text-gray-700 truncate text-center">
